@@ -3,6 +3,7 @@ package com.example.lhvhomework.controllers;
 import ch.qos.logback.classic.Logger;
 import com.example.lhvhomework.entities.SanctionedPerson;
 import com.example.lhvhomework.repositories.SanctionedPersonRepository;
+import com.example.lhvhomework.util.NoiseWordsRemover;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,8 +32,11 @@ public class SanctionedPersonController {
     public ResponseEntity<?> findByName(@RequestParam String name) {
 
         SanctionedPerson person = null;
+        NoiseWordsRemover noiseWordsRemover = new NoiseWordsRemover();
 
         Iterable<SanctionedPerson> persons = repository.findAll();
+
+        name = noiseWordsRemover.removeNoiseWords(name);
 
         for (SanctionedPerson sanctionedPerson: persons) {
             int weightedScore = FuzzySearch.weightedRatio(sanctionedPerson.getName(), name);
