@@ -14,15 +14,15 @@ public class SanctionedPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String reason;
+    private Timestamp activeFrom;
+    private Timestamp deletedAt;
+
     @CreationTimestamp
     private Timestamp createdAt;
     @UpdateTimestamp
     private Timestamp updatedAt;
-    private Timestamp activeFrom;
-    private Timestamp deletedAt;
 
     public String getName() {
         return name;
@@ -55,4 +55,6 @@ public class SanctionedPerson {
     public void setDeletedAt(Timestamp deletedAt) {
         this.deletedAt = deletedAt;
     }
+
+    public Long getId() { return id; }
 }
