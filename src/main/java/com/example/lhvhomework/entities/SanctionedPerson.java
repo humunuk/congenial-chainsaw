@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,8 +16,14 @@ public class SanctionedPerson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Min(2)
     private String name;
+    @NotNull
+    @Min(2)
     private String reason;
+    @NotNull
     private Timestamp activeFrom;
     private Timestamp deletedAt;
 

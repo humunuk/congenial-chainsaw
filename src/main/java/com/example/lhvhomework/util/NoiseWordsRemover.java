@@ -16,7 +16,7 @@ public class NoiseWordsRemover {
             name = name.replaceAll(noiseWord, "");
         }
 
-        return StringUtils.capitalize(name);
+        return StringUtils.capitalize(name.trim());
     }
 
 }
