@@ -12,8 +12,13 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.EntityLinks;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 
 @BasePathAwareController
@@ -60,5 +65,13 @@ public class SanctionedPersonController {
                 .add(entityLinks.linkToItemResource(SanctionedPerson.class, person.getId()).withSelfRel());
 
         return ResponseEntity.ok(model);
+    }
+
+    @DeleteMapping("/sanctioned/{id}")
+    public void deletePerson(@PathVariable Long id) {
+        SanctionedPerson person = repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        person.setDeletedAt(new Timestamp(new Date().getTime()));
+
+        repository.save(person);
     }
 }

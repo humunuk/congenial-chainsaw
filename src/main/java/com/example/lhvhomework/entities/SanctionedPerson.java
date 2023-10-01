@@ -18,10 +18,8 @@ public class SanctionedPerson {
     private Long id;
 
     @NotNull
-    @Min(2)
     private String name;
     @NotNull
-    @Min(2)
     private String reason;
     @NotNull
     private Timestamp activeFrom;
