@@ -29,6 +29,7 @@
 
 If I had taken more time then I would have implemented:
 
+- Security
 - Proper error handling
 - Tests
 - Caching
