@@ -12,8 +12,14 @@
 # Endpoints
 
 ### GET /sanctioned/search?name={name}
+- Search person by name, wether they are on sanctioned list, returns single instance
+
 ### GET /sanctioned/
+- Get all sanctioned persons list, paginated
+   
 ### GET /sanctioned/{id}
+- Get info about snactioned person by id
+
 ### POST /sanctioned
 ```
 {
@@ -23,7 +29,10 @@
 }
 ```
 ### PATCH /sanctioned/{id}
+- Update sanctioned person by id
+
 ### DELETE /sanctioned/{id}
+- Delete sanctioned person (adds timestamp to deleted_at column in database)
 
 # Missing features
 
